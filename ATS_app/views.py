@@ -9,7 +9,7 @@ def home(request):
 
 def job_listings(request):
     jobs = JobPost.objects.all()
-    return render(request, 'job_listing.html', {'jobs': jobs})
+    return render(request, 'ats_app/job_listing.html', {'jobs': jobs})
 
 def apply_for_job(request, job_id):
     if request.user.is_authenticated:
