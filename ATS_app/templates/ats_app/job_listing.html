@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Job Listings</h2>
+
+{% if jobs %}
+<table class="table table-bordered table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for job in jobs %}
+        <tr>
+            <td>{{ job.title }}</td>
+            <td>{{ job.description }}</td>
+            <td>
+                <a href="{% url 'apply_for_job' job.id %}" class="btn btn-primary btn-sm">Apply</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No job postings are available at the moment.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>My Applications</h2>
+
+{% if applications %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>Application Date</th>
+            <th>Status</th>
+            <th>View Job Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for application in applications %}
+        <tr>
+            <td>{{ application.job_post.title }}</td>
+            <td>{{ application.application_date|date:"d M Y" }}</td>
+            <td>
+                {% if application.status == "accepted" %}
+                <span class="badge badge-success">Accepted</span>
+                {% elif application.status == "rejected" %}
+                <span class="badge badge-danger">Rejected</span>
+                {% else %}
+                <span class="badge badge-secondary">Pending</span>
+                {% endif %}
+            </td>
+            <td><a href="{% url 'job_detail' application.job_post.id %}" class="btn btn-info btn-sm">Details</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>You haven't applied for any jobs yet.</p>
+{% endif %}
+
+<a href="{% url 'job_listings' %}" class="btn btn-primary mt-3">Browse Job Listings</a>
+
+{% endblock %}
