@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Apply for {{ job.title }}</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" name="name" id="name" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="contact_info">Contact Information:</label>
+        <textarea class="form-control" name="contact_info" id="contact_info" rows="3" required></textarea>
+    </div>
+    
+    <div class="form-group">
+        <label for="resume">Upload Resume:</label>
+        <input type="file" class="form-control-file" name="resume" id="resume" required>
+    </div>
+    
+    <input type="submit" value="Submit Application" class="btn btn-primary">
+
+</form>
+
+<a href="{% url 'job_detail' job.id %}" class="btn btn-secondary mt-3">Back to Job Details</a>
+
+{% endblock %}
