@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Applications for {{ job.title }}</h1>
+
+<ul>
+    {% for application in applications %}
+    <li>
+        {{ application.candidate.user.username }} - Status: {{ application.status }} - Applied on: {{ application.application_date }}
+        
+        <form method="post" action="{% url 'update_application_status' application.id %}">
+            {% csrf_token %}
+            <label for="status">Change Status:</label>
+            <select name="status">
+                <option value="pending" {% if application.status == 'pending' %}selected{% endif %}>Pending</option>
+                <option value="accepted" {% if application.status == 'accepted' %}selected{% endif %}>Accepted</option>
+                <option value="rejected" {% if application.status == 'rejected' %}selected{% endif %}>Rejected</option>
+            </select>
+            <input type="submit" value="Update">
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

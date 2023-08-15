@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Recruiter Dashboard</h2>
+<h1>Welcome, Recruiter!</h1>
 
 <!-- Manage Job Postings Section -->
 <div class="my-4">
-    <h4>Manage Job Postings</h4>
+    <h2>Manage Your Job Postings</h2>
     <a href="{% url 'create_job' %}" class="btn btn-primary mb-3">Create New Job Posting</a>
     
     {% if job_posts %}
@@ -38,7 +38,7 @@
 
 <!-- Review Applications Section -->
 <div class="my-4">
-    <h4>Review Applications</h4>
+    <h2>Review Applications</h2>
 
     {% if applications %}
     <table class="table table-bordered">
@@ -58,7 +58,6 @@
                 <td>{{ application.candidate.name }}</td>
                 <td>{{ application.application_date|date:"d M Y" }}</td>
                 <td>
-                    <!-- Again, adjust this as per your model's fields -->
                     {% if application.status == "accepted" %}
                     <span class="badge badge-success">Accepted</span>
                     {% elif application.status == "rejected" %}
@@ -69,7 +68,7 @@
                 </td>
                 <td>
                     <a href="{% url 'view_application' application.id %}" class="btn btn-info btn-sm">View</a>
-                    <!-- Add other actions as needed, e.g., 'Accept', 'Reject' -->
+                    <!-- You can add other actions like 'Accept' or 'Reject' as needed -->
                 </td>
             </tr>
             {% endfor %}

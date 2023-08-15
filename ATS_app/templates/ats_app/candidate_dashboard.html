@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Welcome, Candidate!</h1>
+<h2>Your Applications</h2>
+<ul>
+    {% for application in applications %}
+    <li>
+        {{ application.job_post.title }} - Status: {{ application.status }} - <a href="{% url 'job_detail' application.job_post.id %}">Job Details</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
