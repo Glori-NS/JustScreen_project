@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATS System</title>
-    <!-- Linking Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kDSS7S4tyNiF8Mmfb/Kmb0JJ" crossorigin="anonymous">
+    <title>JustScreen Application Tracking System</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f6f6f6;
+            font-family: 'Arial', sans-serif;
+        }
 
+        .navbar {
+            background-color: rgb(198, 155, 227);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand, .nav-link {
+            color: #2164f3 !important; /* Similar to Indeed's blue */
+        }
+
+        footer {
+            background-color: white;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
+
 <body>
+
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-md">
         <a class="navbar-brand" href="{% url 'home' %}">ATS System</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,10 +45,8 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'job_listings' %}">Job Listings</a>
                 </li>
-                <!-- You can add more links depending on the features of your app -->
             </ul>
             <ul class="navbar-nav ml-auto">
-                <!-- You can use logic here to determine if a user is logged in and show relevant links -->
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
@@ -41,23 +63,22 @@
         </div>
     </nav>
 
-    <!-- Main content, where child templates will insert their content -->
-<div class="container mt-5">
-    {% block content %}
-    {% endblock %}
-</div>
-
-<!-- Footer -->
-<footer class="bg-light text-center text-lg-start mt-5">
-    <div class="container p-4">
-        <p>&copy; 2023 ATS System. All rights reserved.</p>
+    <!-- Main content -->
+    <div class="container mt-5 mb-5">
+        {% block content %}
+        {% endblock %}
     </div>
-</footer>
 
-<!-- Linking Bootstrap JS (and Popper.js) for the navbar toggler functionality -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1do4A+gf8k5l7l4lMz4i3WDQn1Z7y/JonasIUNsobU+KZgX4J2Dk4jW1" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kDSS7S4tyNiF8Mmfb/Kmb0JJ" crossorigin="anonymous"></script>
+    <!-- Footer -->
+    <footer class="text-center p-4">
+        <p>&copy; 2023 ATS System. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS for functionalities -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
+
 </html>

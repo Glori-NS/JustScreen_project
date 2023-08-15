@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add New Job Post</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="title">Job Title:</label>
+    <input type="text" id="title" name="title">
+    <br>
+    <label for="description">Job Description:</label>
+    <textarea id="description" name="description"></textarea>
+    <br>
+    <input type="submit" value="Add Job">
+</form>
+{% endblock %}

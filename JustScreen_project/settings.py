@@ -126,4 +126,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'ATS_app.CustomUser'
-# use CustomUser from the ATS_app application as the primary User model for authentication
+
+LOGIN_REDIRECT_URL = ''
