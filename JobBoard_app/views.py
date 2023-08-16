@@ -7,8 +7,7 @@ from django.contrib import messages
 from django.contrib import messages
 
 #1. Removed authentication related views
-#2. Adjusted views related to 'JobPost' to
-#reflect the removal of 'created_by' field.
+#2. Adjusted views related to 'JobPost' to reflect the removal of 'created_by' field.
 #3. Removed views related to CustomUsers including Candidates and their applications
 
 
@@ -50,7 +49,7 @@ def job_search_results(request):
     job_title = request.GET.get('job_title', '')
     jobs = JobPost.objects.filter(title__icontains=job_title)
     
-    return render(request, 'job_search_results.html', {'jobs': jobs, 'job_title': job_title})
+    return render(request, 'ats_app/job_search_results.html', {'jobs': jobs, 'job_title': job_title})
 
 
 
