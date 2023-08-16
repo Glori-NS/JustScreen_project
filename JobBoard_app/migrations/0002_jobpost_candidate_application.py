@@ -8,7 +8,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ATS_app', '0001_initial'),
+        ('JobBoard_app', '0001_initial'),
     ]
 
     operations = [
@@ -37,8 +37,8 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('application_date', models.DateTimeField(auto_now_add=True)),
                 ('status', models.CharField(choices=[('pending', 'Pending'), ('accepted', 'Accepted'), ('rejected', 'Rejected')], default='pending', max_length=10)),
-                ('candidate', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ATS_app.candidate')),
-                ('job_post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ATS_app.jobpost')),
+                ('candidate', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='JobBoard_app.candidate')),
+                ('job_post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='JobBoard_app.jobpost')),
             ],
         ),
     ]

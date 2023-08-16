@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <h2 class="mb-4">Available Job Listings</h2>
+            {% if jobs %}
+                {% for job in jobs %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{% url 'job_detail' job.id %}">{{ job.title }}</a></h5>
+                            <p class="card-text">{{ job.description|truncatechars:150 }}</p>
+                            <p class="text-muted">Contact: <a href="mailto:{{ job.contact_email }}">{{ job.contact_email }}</a></p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No job listings available at the moment.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

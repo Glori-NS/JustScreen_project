@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Add a New Job Post</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{% url 'add_job_post' %}">
+                        {% csrf_token %}
+                        <!-- Existing fields -->
+                        <div class="form-group">
+                            <label for="title">Job Title</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter job title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Job Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="5" placeholder="Describe the job responsibilities, requirements, benefits, etc." required></textarea>
+                        </div>
+                        <!-- New fields for company_name and contact_email -->
+                        <div class="form-group">
+                            <label for="company_name">Company Name</label>
+                            <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Enter company name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact_email">Contact Email</label>
+                            <input type="email" class="form-control" id="contact_email" name="contact_email" placeholder="Enter contact email for inquiries" required>
+                        </div>
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-success btn-block">Post Job</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+Bootstrap Grid System: Used the Bootstrap grid system to center the form on the page.
+Card Component: Used the Bootstrap card component to enclose the form and give it a more polished look.
+Form Components: Modified form input fields to utilize Bootstrap's form classes, which provide a cleaner design and built-in responsiveness.
+Button: Changed the button to a full-width block button and modified its color.

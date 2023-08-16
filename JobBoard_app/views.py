@@ -23,30 +23,34 @@ def job_listings(request):
     return render(request, 'ats_app/job_listing.html', {'jobs': jobs})
 
 
+
 def job_detail(request, job_id):
     """Displays detailed information about a specific job."""
     job = get_object_or_404(JobPost, id=job_id)
     return render(request, 'ats_app/job_detail.html', {'job': job})
 
-@require_POST
+
 def add_job_post(request):
-    """Allows any user to post new job listings."""
-    title = request.POST.get('title')
-    description = request.POST.get('description')
-    company_name = request.POST.get('company_name')
-    contact_email = request.POST.get('contact_email')
+    if request.method == "POST":
+        #Allows any user to post new job listings.
     
-    job_post = JobPost(title=title, description=description, company_name=company_name, contact_email=contact_email)
-    job_post.save()
-    messages.success(request, "Job post added successfully!")
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        company_name = request.POST.get('company_name')
+        contact_email = request.POST.get('contact_email')
+        job_post = JobPost(title=title, description=description, company_name=company_name, contact_email=contact_email)
+        job_post.save()
+        messages.success(request, "Job post added successfully!")
     
-    return redirect('job_listings')
+        return redirect('job_listings')
+    return render(request, 'ats_app/add_job_post.html')
+
 
 def job_search_results(request):
     job_title = request.GET.get('job_title', '')
     jobs = JobPost.objects.filter(title__icontains=job_title)
     
-    return render(request, 'job_search_results_page.html', {'jobs': jobs, 'job_title': job_title})
+    return render(request, 'job_search_results.html', {'jobs': jobs, 'job_title': job_title})
 
 
 
