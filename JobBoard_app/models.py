@@ -31,11 +31,28 @@ class JobPost(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
-    
+
     def __str__(self):
         return self.title
 
+# =========================
+# Comment Model
+# =========================
 
+class Comment(models.Model):
+    JobPost = models.ForeignKey(JobPost, on_delete=models.CASCADE, related_name='comments')
+
+    name = models.CharField(max_length=255)
+    # Users to add their names
+
+    text = models.TextField()
+    # Textbox for users to enter comments
+
+    created_on = models.DateTimeField(auto_now_add=True)
+    # Timestap when comments are created
+
+    def __str__(self):
+        return f"Comment by {self.name} on {self.created_on}"
 
 
 #References: 

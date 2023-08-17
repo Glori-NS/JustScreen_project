@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
-from .models import JobPost
+from .models import JobPost, Comment
 from django.contrib import messages
+from .forms import CommentForm 
 
 
 from django.contrib import messages
@@ -26,7 +27,22 @@ def job_listings(request):
 def job_detail(request, job_id):
     """Displays detailed information about a specific job."""
     job = get_object_or_404(JobPost, id=job_id)
-    return render(request, 'ats_app/job_detail.html', {'job': job})
+    comments = Comment.objects.filter(JobPost=job) #added to fetch comments for the job 
+    form =CommentForm() #initialize comment form
+
+    # Handles the comment submission 
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.JobPost = job
+            comment.save()
+            messages.success(request, "Comment added successfully!")
+            return redirect('job_detail', job_id=job.id) 
+        else:
+            form = CommentForm()
+
+    return render(request, 'ats_app/job_detail.html', {'job': job, 'comments': comments, 'form':form})
 
 
 def add_job_post(request):

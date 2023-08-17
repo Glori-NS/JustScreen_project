@@ -1,5 +1,5 @@
 from django import forms
-from .models import JobPost
+from .models import JobPost, Comment
 
 class JobPostForm(forms.ModelForm):
     """
@@ -26,6 +26,13 @@ class JobPostForm(forms.ModelForm):
     class Meta:
         model = JobPost
         fields = ['title', 'description', 'contact_email']
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text',]
+    
 
 # References:
 # 1. Django ModelForms: https://docs.djangoproject.com/en/3.2/topics/forms/modelforms/

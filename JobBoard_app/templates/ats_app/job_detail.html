@@ -10,8 +10,28 @@
                 </div>
                 <div class="card-body">
                     <p><strong>Description:</strong></p>
-                    <p>{{ job.description }}</p>
+                    <p>{{ job.description|linebreaks }}</p>
                     <p><strong>Contact Email:</strong> <a href="mailto:{{ job.contact_email }}">{{ job.contact_email }}</a></p>
+
+                    <!-- Comments Section Starts Here -->
+                    <hr>
+                    <h5>Comments:</h5>
+                    {% for comment in comments %}
+                        <div class="comment mb-3">
+                            <strong>{{ comment.name }}</strong>
+                            <p>{{ comment.text }}</p>
+                        </div>
+                    {% endfor %}
+                    
+                    <!-- Comment Form Starts Here -->
+                    <h5>Add a comment:</h5>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    <!-- Comment Form Ends Here -->
+
                 </div>
             </div>
         </div>
