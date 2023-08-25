@@ -18,8 +18,8 @@
                     <h5>Comments:</h5>
                     {% for comment in comments %}
                         <div class="comment mb-3">
-                            <strong>{{ comment.name }}</strong>
-                            <p>{{ comment.text }}</p>
+                           <!--<strong> {{ comment.name }} </strong>: {{ comment.text }} -->
+                            <strong> {% if comment.name %} {{ comment.name }} {% else %} Anonymous {% endif %}</strong>: {{ comment.text }} 
                         </div>
                     {% endfor %}
                     

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,7 +53,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-md">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">JustScreen Job Board System </a>
+            <a class="navbar-brand" href="{% url 'home' %}">  <em>JustScreen</em> </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -84,6 +86,11 @@
 
     <!-- Main content -->
     <div class="container content">
+        <p> 
+            <h1> <center> <b> <em>  Now Hiring ! </em></b> </center>  </h1>
+        </p>
+
+    
         {% block content %}
         {% endblock %}
     </div>

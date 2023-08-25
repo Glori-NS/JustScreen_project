@@ -29,9 +29,22 @@ class JobPostForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+
+
+    name = forms.CharField(
+        max_length=30,
+        required=True,
+        widget=forms.TextInput(attrs={'class' : 'form-control', 'placeholder' : ''})
+    )
+    text = forms.CharField(
+        max_length=200,
+        required=True,
+        widget=forms.TextInput(attrs={'class' : 'form-control', 'placeholder' : ''})
+    )
+
     class Meta:
         model = Comment
-        fields = ['text',]
+        fields = ['name','text'] #name added here
     
 
 # References:

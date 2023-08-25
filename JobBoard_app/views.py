@@ -36,6 +36,10 @@ def job_detail(request, job_id):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.JobPost = job
+
+            #added to save the name with the comment
+            comment.name =request.POST.get('name', 'Anonymous')
+            
             comment.save()
             messages.success(request, "Comment added successfully!")
             return redirect('job_detail', job_id=job.id) 
