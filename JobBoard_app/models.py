@@ -52,7 +52,7 @@ class Comment(models.Model):
     # Timestap when comments are created
 
     def __str__(self):
-        return f"Comment by {self.name} on {self.created_on}"
+        return f" Comment by {self.name} on {self.created_on}"
 
 
 #References: 
